@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+
+@import "tailwindcss";
+
+* {
+	cursor: none;
+}
+
+@theme {
+	--font-quicksand: "league-spartan", serif;
+	--color-primary: #1a1831;
+	--color-accent: #ff6b6b;
+	--color-offWhite: #dece9c;
+
+	--drop-shadow-glow: rgba(222, 206, 156, 0.5) 0px 54px 55px;
+}
+
+:root {
+	--primary: #1a1831;
+	--accent: #ff6b6b;
+	--offWhite: #dece9c;
+}
+
+html,
+body {
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+	width: 3px;
+	background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--accent);
+}
+
+::-webkit-scrollbar-button {
+	display: none;
+}
+
+.noise {
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 950 950' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.5' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+	opacity: 0.12;
+}
+
+.full-bleed {
+	width: 100vw;
+	left: 50%;
+	margin-left: -50vw;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0) translateX(0);
+	}
+	25% {
+		transform: translateY(-20px) translateX(10px);
+	}
+	50% {
+		transform: translateY(10px) translateX(-10px);
+	}
+	75% {
+		transform: translateY(-10px) translateX(20px);
+	}
+}
+
+@layer utilities {
+	.perspective-1000 {
+		perspective: 1000px;
+	}
+
+	.backface-hidden {
+		backface-visibility: hidden;
+	}
+
+	[transform-style~="preserve-3d"] {
+		transform-style: preserve-3d;
+	}
+
+	[transform~="rotateY(180deg)"] {
+		transform: rotateY(180deg);
+	}
+
+	.animate-float {
+		animation: float 6s ease-in-out infinite;
+	}
+	.animate-float-delay-1 {
+		animation: float 6s ease-in-out infinite 2s;
+	}
+	.animate-float-delay-2 {
+		animation: float 6s ease-in-out infinite 4s;
+	}
+}
+
+.card {
+	width: 300px;
+	border-radius: 20px;
+	background: var(--primary);
+	padding: 5px;
+	overflow: hidden;
+	transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.card:hover {
+	transform: translateY(-15px);
+}
+.card .top-section {
+	height: 150px;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	background: center center / cover no-repeat;
+	position: relative;
+}
+.card .top-section .border {
+	border-bottom-right-radius: 10px;
+	height: 30px;
+	color: var(--primary);
+	width: 85px;
+	background: var(--primary);
+	position: relative;
+	transform: skew(-40deg);
+	box-shadow: -10px -10px 0 0 var(--primary);
+}
+.card .top-section .border::before {
+	content: "";
+	color: var(--primary);
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	top: 0;
+	right: -15px;
+	background: rgba(255, 255, 255, 0);
+	border-top-left-radius: 10px;
+	box-shadow: -5px -5px 0 2px var(--primary);
+}
+.card .top-section::before {
+	content: "";
+	color: var(--primary);
+	position: absolute;
+	top: 30px;
+	left: 0;
+	background: rgba(255, 255, 255, 0);
+	height: 15px;
+	width: 15px;
+	border-top-left-radius: 15px;
+	box-shadow: -5px -5px 0 2px var(--primary);
+}
+.card .top-section .icons {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 18px;
+	display: flex;
+	justify-content: space-between;
+}
+.card .top-section .icons .logo {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 0 5px 15px;
+}
+.card .top-section .icons .logo a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.card .top-section .icons .logo img.icon {
+	height: 24px;
+	width: 24px;
+	transition: all 0.3s ease;
+}
+.card .top-section .icons .logo img.icon:hover {
+	transform: scale(1.1);
+}
+.card .bottom-section {
+	margin-top: 15px;
+	padding: 10px 5px;
+}
+.card .bottom-section .title {
+	display: block;
+	font-size: 17px;
+	font-weight: bolder;
+	color: var(--offWhite);
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 2px;
+}
+.card .bottom-section .desc {
+	display: block;
+	font-size: 12px;
+	color: rgba(222, 206, 156, 0.7);
+	text-align: center;
+	margin-top: 10px;
+	line-height: 1.4;
+}
+.card .bottom-section .tags {
+	display: block;
+	font-size: 12px;
+	color: rgba(255, 107, 107, 0.7);
+	text-align: center;
+	margin-top: 10px;
+	font-style: italic;
+}

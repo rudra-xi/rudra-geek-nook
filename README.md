@@ -4,6 +4,8 @@
 
 Rudra Geek Nook is a personal portfolio website showcasing my projects and skills. It serves as a digital resume and a platform to share my work with potential employers and collaborators.
 
+![preview](https://github.com/user-attachments/assets/ca024bee-81ba-44e6-a18d-1af7eb144cb3)
+
 ## Features
 
 - Responsive design
@@ -62,6 +64,10 @@ npm run build
 
 This will create a `dist` directory with the production build of your project.
 
+## Deployment
+
+The project is deployed and can be accessed at: [![Netlify](https://img.shields.io/badge/Netlify_Rudra_Geek_Nook_-%23000000.svg?logo=netlify&logoColor=#00C7B7)](https://rudra-xi-protfolio.netlify.app/)
+
 ## Important Dependencies
 
 - **React**: A JavaScript library for building user interfaces.
@@ -86,10 +92,10 @@ While this is a personal project, I'm open to suggestions and feedback! If you h
 
 Here are some planned features and improvements for the future:
 
-- Add Multi Color mode support.
-- Integrate a blog section (If i made any.).
-- Improve accessibility.
-- Add more interactive animations.
+- Implement multi-color mode support.
+- Integrate a blog section (subject to availability).
+- Enhance accessibility features.
+- Introduce more interactive animations.
 
 ***Your feedback and suggestions are welcome to help shape the future of this project!***
 

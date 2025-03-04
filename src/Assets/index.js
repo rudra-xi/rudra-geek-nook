@@ -5,7 +5,6 @@ import github from "./github.svg";
 import preview from "./preview.svg";
 import download from "./download.svg";
 import done from "./done.svg";
-import resume from "./resume.pdf";
 
 import vsc from "./vsc.svg";
 import css from "./css.svg";
@@ -55,7 +54,6 @@ export {
 	github,
 	preview,
 	download,
-	resume,
 	linkedin,
 	instagram,
 };

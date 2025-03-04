@@ -1,7 +1,7 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { HeroBG, HeroBtn } from "../Components";
-import { download, github, resume } from "../Assets";
+import { download, github} from "../Assets";
 import { motion } from "motion/react";
 
 function Hero() {
@@ -95,8 +95,10 @@ function Hero() {
 					<HeroBtn
 						text={"Download My Resume"}
 						icon={download}
-						href={resume}
-						download={resume}
+						href={
+							"https://www.dropbox.com/scl/fi/tpga8880tf1ogz9pnmdbe/Goutam-Prasad-Resume.pdf?rlkey=ojey01nho0s81aybtqrka5u32&st=q5rp5cym&dl=1"
+						}
+						download={"https://www.dropbox.com/scl/fi/tpga8880tf1ogz9pnmdbe/Goutam-Prasad-Resume.pdf?rlkey=ojey01nho0s81aybtqrka5u32&st=q5rp5cym&dl=1"}
 					/>
 				</motion.div>
 			</div>

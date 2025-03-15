@@ -6,6 +6,8 @@ function HeroBtn({ text, icon, href, download }) {
 		<div className="pb-3 sm:pb-0 hover:-translate-y-1 transition-all duration-300">
 			<a
 				className="relative inline-flex h-12 transition overflow-hidden rounded-lg p-[2px] focus:outline-none"
+				target="_blank"
+							rel="noopener noreferrer"
 				download={download}
 				href={href}
 			>

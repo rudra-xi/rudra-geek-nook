@@ -13,13 +13,13 @@ const timeFormatter = new Intl.DateTimeFormat("en-IN", {
 });
 
 /**
- * Displays location and local time information
- * Shows location from Asansol, India with real-time clock
- * Updates every second with current IST time
- */
+ * Displays location and local time information
+ * Shows location from Asansol, India with real-time clock
+ * Updates every second with current IST time
+ */
 export default function LocationTime() {
-	// Initialize state with null or a stable placeholder string
-	const [localTime, setLocalTime] = useState(null);
+	// 🛑 CORRECTED LINE: Explicitly define state type as string | null
+	const [localTime, setLocalTime] = useState<string | null>(null);
 
 	/**
 	 * Updates the time state with current IST time

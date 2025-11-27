@@ -3,8 +3,8 @@
  * Defines the data required to display an activity tag.
  */
 interface ActivityProps {
-	main: string;
-	text: string;
+    main: string;
+    text: string;
 }
 
 /**
@@ -13,9 +13,9 @@ interface ActivityProps {
  * It simulates a terminal prompt with activity context.
  */
 export default function ActivityTag({ text, main }: ActivityProps) {
-	return (
-		<span className="dark:text-accent/50 text-accent/80 text-sm font-medium font-mono">
-			[rudra-xi @ {main}]$ {text}
-		</span>
-	);
+    return (
+        <span className="dark:text-accent/50 text-accent/80 text-sm font-medium font-mono">
+            [rudra-xi @ {main}]$ {text}
+        </span>
+    );
 }

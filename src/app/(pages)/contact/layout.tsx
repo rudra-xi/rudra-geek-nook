@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 // Metadata for the Contact page
 export const metadata: Metadata = {
-	title: "Contact",
+    title: "Contact",
 };
 
 /**
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
  * It simply renders its children within a section element.
  */
 export default function ContactLayout({
-	children,
+    children,
 }: {
-	children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-	// Renders children content within a section
-	return <section>{children}</section>;
+    // Renders children content within a section
+    return <section>{children}</section>;
 }

@@ -13,27 +13,27 @@ import { AppProvider } from "@/context";
  * and includes structural components like navigation and footer.
  */
 export default function Provider({ children }: { children: React.ReactNode }) {
-	return (
-		<section>
-			{/* ThemeProvider configures dark mode and system theme settings. */}
-			<ThemeProvider
-				attribute={"class"}
-				defaultTheme="dark"
-				enableSystem
-				disableTransitionOnChange
-			>
-				{/* AppProvider delivers global state and context to children. */}
-				<AppProvider>
-					{/* Toaster component for displaying notifications. */}
-					<Toaster />
-					{/* Navigation component for site-wide navigation. */}
-					<Navigation />
-					{/* Renders the child components wrapped by this provider. */}
-					{children}
-					{/* Footer component displayed at the bottom of the page. */}
-					<Footer />
-				</AppProvider>
-			</ThemeProvider>
-		</section>
-	);
+    return (
+        <section>
+            {/* ThemeProvider configures dark mode and system theme settings. */}
+            <ThemeProvider
+                attribute={"class"}
+                defaultTheme="dark"
+                enableSystem
+                disableTransitionOnChange
+            >
+                {/* AppProvider delivers global state and context to children. */}
+                <AppProvider>
+                    {/* Toaster component for displaying notifications. */}
+                    <Toaster />
+                    {/* Navigation component for site-wide navigation. */}
+                    <Navigation />
+                    {/* Renders the child components wrapped by this provider. */}
+                    {children}
+                    {/* Footer component displayed at the bottom of the page. */}
+                    <Footer />
+                </AppProvider>
+            </ThemeProvider>
+        </section>
+    );
 }

@@ -1,37 +1,37 @@
 "use client";
 
 import {
-	Calendar,
-	ExternalLink,
-	FileImageIcon,
-	Loader2,
-	Radio,
-	Star,
-	Terminal,
+    Calendar,
+    ExternalLink,
+    FileImageIcon,
+    Loader2,
+    Radio,
+    Star,
+    Terminal,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ActivityTag } from "@/components";
 import NextVideo from "next-video";
 import {
-	amIHerePreview,
-	financePreview,
-	flickerPreview,
-	bezierPreview,
-	sylvanPreview,
-	archivePreview,
+    amIHerePreview,
+    financePreview,
+    flickerPreview,
+    bezierPreview,
+    sylvanPreview,
+    archivePreview,
 } from "@/videos";
 
 // --- Type Definitions ---
 interface Repo {
-	id: number;
-	name: string;
-	html_url: string;
-	description: string | null;
-	pushed_at: string;
-	stargazers_count: number;
-	language: string | null;
-	homepage?: string;
+    id: number;
+    name: string;
+    html_url: string;
+    description: string | null;
+    pushed_at: string;
+    stargazers_count: number;
+    language: string | null;
+    homepage?: string;
 }
 
 /**
@@ -42,230 +42,230 @@ interface Repo {
 
 // --- Demo URL Mapping ---
 const DEMO_URLS: { [key: string]: string } = {
-	"am-i-here-or-not": "https://am-i-here-or-not.vercel.app",
-	"archive-dark-desire": "https://rudra-xi.github.io/archive-dark-desire/",
-	"finance-flow": "https://finance-flow-xuyt.onrender.com/#/",
-	"quick-bezier": "https://quick-bezier.netlify.app/",
-	"sylvan-reveal-animation":
-		"https://rudra-xi.github.io/sylvan-reveal-animation/",
-	"flicker-bar-site": "https://flicker-bar-site.vercel.app",
+    "am-i-here-or-not": "https://am-i-here-or-not.vercel.app",
+    "archive-dark-desire": "https://rudra-xi.github.io/archive-dark-desire/",
+    "finance-flow": "https://finance-flow-xuyt.onrender.com/#/",
+    "quick-bezier": "https://quick-bezier.netlify.app/",
+    "sylvan-reveal-animation":
+        "https://rudra-xi.github.io/sylvan-reveal-animation/",
+    "flicker-bar-site": "https://flicker-bar-site.vercel.app",
 };
 
 // --- Video Preview Mapping ---
 const VIDEO_PREVIEWS: { [key: string]: any } = {
-	"am-i-here-or-not": amIHerePreview,
-	"finance-flow": financePreview,
-	"flicker-bar-site": flickerPreview,
-	"quick-bezier": bezierPreview,
-	"sylvan-reveal-animation": sylvanPreview,
-	"archive-dark-desire": archivePreview,
+    "am-i-here-or-not": amIHerePreview,
+    "finance-flow": financePreview,
+    "flicker-bar-site": flickerPreview,
+    "quick-bezier": bezierPreview,
+    "sylvan-reveal-animation": sylvanPreview,
+    "archive-dark-desire": archivePreview,
 };
 
 // --- Utility Function for Language Color ---
 function getLanguageColor(language: string | null): string {
-	const colors: { [key: string]: string } = {
-		JavaScript: "bg-yellow-400",
-		TypeScript: "bg-blue-600",
-		CSS: "bg-purple-500",
-		HTML: "bg-orange-500",
-	};
-	return colors[language || ""] || "bg-gray-500";
+    const colors: { [key: string]: string } = {
+        JavaScript: "bg-yellow-400",
+        TypeScript: "bg-blue-600",
+        CSS: "bg-purple-500",
+        HTML: "bg-orange-500",
+    };
+    return colors[language || ""] || "bg-gray-500";
 }
 
 // --- Card Sub-Component ---
 interface ProjectCardProps {
-	repo: Repo;
-	index: number;
+    repo: Repo;
+    index: number;
 }
 
 const GitHubProjectCard: React.FC<ProjectCardProps> = ({ repo, index }) => {
-	/**
-	 * Renders individual project card
-	 * Displays repo info with preview and links
-	 * Includes star count and language tag
-	 */
-	const updatedDate = new Date(repo.pushed_at).toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	});
-	const description =
-		repo.description ||
-		"A project without a description. Click to explore the code!";
+    /**
+     * Renders individual project card
+     * Displays repo info with preview and links
+     * Includes star count and language tag
+     */
+    const updatedDate = new Date(repo.pushed_at).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    });
+    const description =
+        repo.description ||
+        "A project without a description. Click to explore the code!";
 
-	const formatNumber = (num: number): string => {
-		return num.toLocaleString();
-	};
+    const formatNumber = (num: number): string => {
+        return num.toLocaleString();
+    };
 
-	// Check if this repo has a demo URL
-	const hasDemo = DEMO_URLS[repo.name] || repo.homepage;
-	const demoUrl = DEMO_URLS[repo.name] || repo.homepage;
+    // Check if this repo has a demo URL
+    const hasDemo = DEMO_URLS[repo.name] || repo.homepage;
+    const demoUrl = DEMO_URLS[repo.name] || repo.homepage;
 
-	// Check if video preview exists for this repo
-	const hasVideoPreview = VIDEO_PREVIEWS[repo.name];
-	const videoPreview = VIDEO_PREVIEWS[repo.name];
+    // Check if video preview exists for this repo
+    const hasVideoPreview = VIDEO_PREVIEWS[repo.name];
+    const videoPreview = VIDEO_PREVIEWS[repo.name];
 
-	return (
-		<div
-			className="relative flex flex-col gap-3 p-4 w-86 bg-background/50 border border-accent/20 rounded-lg group transition-all duration-300 hover:scale-[1.02] hover:border-accent/40 animate-in fade-in slide-in-from-bottom-5"
-			style={{ animationDelay: `${index * 100}ms` }}
-		>
-			{/* Image/Video Preview Container */}
-			<div className="overflow-hidden relative z-0 w-full h-42 bg-accent/10 border border-accent/20 rounded-lg flex items-center justify-center">
-				{hasVideoPreview ? (
-					<NextVideo
-						src={videoPreview}
-						autoPlay
-						controls={false}
-						loop
-						muted
-						playsInline
-						className="w-full h-full object-cover"
-					/>
-				) : (
-					<div className="flex flex-col items-center justify-center gap-2 text-accent/60">
-						<FileImageIcon className="size-8" />
-						<span className="text-xs text-center px-2">
-							Preview will be here soon
-						</span>
-					</div>
-				)}
-			</div>
+    return (
+        <div
+            className="relative flex flex-col gap-3 p-4 w-86 bg-background/50 border border-accent/20 rounded-lg group transition-all duration-300 hover:scale-[1.02] hover:border-accent/40 animate-in fade-in slide-in-from-bottom-5"
+            style={{ animationDelay: `${index * 100}ms` }}
+        >
+            {/* Image/Video Preview Container */}
+            <div className="overflow-hidden relative z-0 w-full h-42 bg-accent/10 border border-accent/20 rounded-lg flex items-center justify-center">
+                {hasVideoPreview ? (
+                    <NextVideo
+                        src={videoPreview}
+                        autoPlay
+                        controls={false}
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                    />
+                ) : (
+                    <div className="flex flex-col items-center justify-center gap-2 text-accent/60">
+                        <FileImageIcon className="size-8" />
+                        <span className="text-xs text-center px-2">
+                            Preview will be here soon
+                        </span>
+                    </div>
+                )}
+            </div>
 
-			{/* Title and Date Block */}
-			<div className="flex flex-col gap-1 z-10">
-				<div className="flex items-center gap-1 text-accent/80 text-xs">
-					<Calendar className="size-3" />
-					<span>{updatedDate}</span>
-				</div>
-				<h3 className="text-lg font-bold text-foreground/90 capitalize">
-					{repo.name.replace(/-/g, " ")}
-				</h3>
-			</div>
+            {/* Title and Date Block */}
+            <div className="flex flex-col gap-1 z-10">
+                <div className="flex items-center gap-1 text-accent/80 text-xs">
+                    <Calendar className="size-3" />
+                    <span>{updatedDate}</span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground/90 capitalize">
+                    {repo.name.replace(/-/g, " ")}
+                </h3>
+            </div>
 
-			{/* Description */}
-			<p className="text-foreground/60 text-xs mb-2 line-clamp-3 min-h-12">
-				{description}
-			</p>
+            {/* Description */}
+            <p className="text-foreground/60 text-xs mb-2 line-clamp-3 min-h-12">
+                {description}
+            </p>
 
-			{/* Links Section */}
-			<div className="flex items-center gap-4 z-10">
-				{/* GitHub Link */}
-				<Link
-					href={repo.html_url}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="flex items-center gap-1 text-xs text-foreground/70 hover:text-accent/90 transition-colors group/link"
-				>
-					<Terminal className="size-3" />
-					<span>Code</span>
-					<ExternalLink className="size-2 opacity-0 group-hover/link:opacity-100 transition-opacity" />
-				</Link>
+            {/* Links Section */}
+            <div className="flex items-center gap-4 z-10">
+                {/* GitHub Link */}
+                <Link
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-foreground/70 hover:text-accent/90 transition-colors group/link"
+                >
+                    <Terminal className="size-3" />
+                    <span>Code</span>
+                    <ExternalLink className="size-2 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                </Link>
 
-				{/* Live Demo Link - Show if demo URL exists */}
-				{hasDemo && (
-					<Link
-						href={demoUrl!}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="flex items-center gap-1 text-xs text-foreground/70 hover:text-accent/90 transition-colors group/link"
-					>
-						<Radio className="size-3" />
-						<span>Live Demo</span>
-						<ExternalLink className="size-2 opacity-0 group-hover/link:opacity-100 transition-opacity" />
-					</Link>
-				)}
-			</div>
+                {/* Live Demo Link - Show if demo URL exists */}
+                {hasDemo && (
+                    <Link
+                        href={demoUrl!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-xs text-foreground/70 hover:text-accent/90 transition-colors group/link"
+                    >
+                        <Radio className="size-3" />
+                        <span>Live Demo</span>
+                        <ExternalLink className="size-2 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                    </Link>
+                )}
+            </div>
 
-			{/* Footer / Stats */}
-			<div className="flex items-center justify-between z-10 mt-auto pt-2 border-t border-accent/20">
-				{/* Star Count (left) */}
-				<div className="flex items-center gap-1 text-sm font-medium text-foreground/70">
-					<Star className="size-3" fill="currentColor" />
-					<span>{formatNumber(repo.stargazers_count)}</span>
-				</div>
+            {/* Footer / Stats */}
+            <div className="flex items-center justify-between z-10 mt-auto pt-2 border-t border-accent/20">
+                {/* Star Count (left) */}
+                <div className="flex items-center gap-1 text-sm font-medium text-foreground/70">
+                    <Star className="size-3" fill="currentColor" />
+                    <span>{formatNumber(repo.stargazers_count)}</span>
+                </div>
 
-				{/* Language Tag (right) */}
-				{repo.language && (
-					<div className="flex items-center gap-1 text-xs text-foreground/70">
-						<div
-							className={`size-2 rounded-full ${getLanguageColor(repo.language)}`}
-						/>
-						<span>{repo.language}</span>
-					</div>
-				)}
-			</div>
-		</div>
-	);
+                {/* Language Tag (right) */}
+                {repo.language && (
+                    <div className="flex items-center gap-1 text-xs text-foreground/70">
+                        <div
+                            className={`size-2 rounded-full ${getLanguageColor(repo.language)}`}
+                        />
+                        <span>{repo.language}</span>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 };
 
 // --- Main Client Component ---
 export default function Projects() {
-	/**
-	 * Main projects display component
-	 * Fetches and renders GitHub repositories
-	 * Handles loading and error states
-	 */
-	const [repos, setRepos] = useState<Repo[]>([]);
-	const [isLoading, setIsLoading] = useState(true);
-	const [hasError, setHasError] = useState(false);
+    /**
+     * Main projects display component
+     * Fetches and renders GitHub repositories
+     * Handles loading and error states
+     */
+    const [repos, setRepos] = useState<Repo[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [hasError, setHasError] = useState(false);
 
-	useEffect(() => {
-		const fetchRepos = async () => {
-			try {
-				const response = await fetch("/api/github/specific-repos");
-				if (!response.ok) {
-					throw new Error(`API returned status ${response.status}`);
-				}
-				const data = await response.json();
-				setRepos(data);
-			} catch (error) {
-				console.error("Error fetching repos:", error);
-				setHasError(true);
-			} finally {
-				setIsLoading(false);
-			}
-		};
+    useEffect(() => {
+        const fetchRepos = async () => {
+            try {
+                const response = await fetch("/api/github/specific-repos");
+                if (!response.ok) {
+                    throw new Error(`API returned status ${response.status}`);
+                }
+                const data = await response.json();
+                setRepos(data);
+            } catch (error) {
+                console.error("Error fetching repos:", error);
+                setHasError(true);
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-		fetchRepos();
-	}, []);
+        fetchRepos();
+    }, []);
 
-	if (isLoading) {
-		return (
-			<div>
-				<ActivityTag text="fetch best_projects" main="github" />
-				<div className="mt-6 text-sm font-mono text-foreground/60 flex items-center gap-2">
-					<Loader2 className={"animate-spin"} />
-					Loading projects...
-				</div>
-			</div>
-		);
-	}
+    if (isLoading) {
+        return (
+            <div>
+                <ActivityTag text="fetch best_projects" main="github" />
+                <div className="mt-6 text-sm font-mono text-foreground/60 flex items-center gap-2">
+                    <Loader2 className={"animate-spin"} />
+                    Loading projects...
+                </div>
+            </div>
+        );
+    }
 
-	if (hasError || repos.length === 0) {
-		return (
-			<div>
-				<ActivityTag text="fetch best_projects" main="github" />
-				<div className="mt-6 text-sm font-mono text-foreground/60">
-					Could not load project showcase. Please check GitHub API
-					access.
-				</div>
-			</div>
-		);
-	}
+    if (hasError || repos.length === 0) {
+        return (
+            <div>
+                <ActivityTag text="fetch best_projects" main="github" />
+                <div className="mt-6 text-sm font-mono text-foreground/60">
+                    Could not load project showcase. Please check GitHub API
+                    access.
+                </div>
+            </div>
+        );
+    }
 
-	return (
-		<div>
-			<ActivityTag text="fetch best_projects" main="github" />
-			<div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-				{repos.map((repo, index) => (
-					<GitHubProjectCard
-						key={repo.id}
-						repo={repo}
-						index={index}
-					/>
-				))}
-			</div>
-		</div>
-	);
+    return (
+        <div>
+            <ActivityTag text="fetch best_projects" main="github" />
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                {repos.map((repo, index) => (
+                    <GitHubProjectCard
+                        key={repo.id}
+                        repo={repo}
+                        index={index}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 }

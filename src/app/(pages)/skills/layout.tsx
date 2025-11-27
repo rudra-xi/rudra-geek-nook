@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 // Metadata for the Skills page
 export const metadata: Metadata = {
-	title: "Skills",
+    title: "Skills",
 };
 
 /**
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
  * It simply renders its children within a section element.
  */
 export default function SkillsLayout({
-	children,
+    children,
 }: {
-	children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-	// Renders children content within a section
-	return <section>{children}</section>;
+    // Renders children content within a section
+    return <section>{children}</section>;
 }

@@ -196,4 +196,4 @@ Open to suggestions and feedback! To contribute:
 
 ## 🪪 License
 
-This project is licensed under the MIT License. See the [![License: MIT](https://img.shields.io/badge/License-MIT-lightgreen.svg)](/LICENSE.) file for more information.
+This project is licensed under the MIT License. See the [![License: MIT](https://img.shields.io/badge/License-MIT-lightgreen.svg)](/LICENSE.md) file for more information.

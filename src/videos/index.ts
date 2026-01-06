@@ -4,12 +4,16 @@ import financePreview from "./finance-flow.mp4.json";
 import flickerPreview from "./flicker-bar-site.mp4.json";
 import bezierPreview from "./quick-bezier.mp4.json";
 import sylvanPreview from "./sylvan-reveal-animation.mp4.json";
+import wyldPreview from "./wyld-ruby.mp4.json";
+import memoirPreview from "./memoir-veritas.mp4.json";
 
 export {
-    amIHerePreview,
-    flickerPreview,
-    bezierPreview,
-    sylvanPreview,
-    archivePreview,
-    financePreview,
+	amIHerePreview,
+	flickerPreview,
+	bezierPreview,
+	sylvanPreview,
+	archivePreview,
+	financePreview,
+	wyldPreview,
+	memoirPreview,
 };
